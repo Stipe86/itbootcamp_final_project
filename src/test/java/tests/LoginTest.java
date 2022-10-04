@@ -50,6 +50,40 @@ public class LoginTest extends BaseTest {
 //        driver.quit();
 //    }
 //
+    /*
+    Login Tests
+Test #1: Visits the login page
+assert:
+Verifikovati da se u url-u stranice javlja ruta /login
+Test #2: Checks input types
+assert:
+Verifikovati da polje za unos emaila za atribut type ima vrednost
+email
+Verifikovati da polje za unos lozinke za atribut type ima vrednost
+password
+Test #3: Displays errors when user does not exist
+Podaci: random email i password koristeći faker libarary
+asssert:
+Verifikovati da greska sadrzi poruku User does not exists
+Verifikovati da se u url-u stranice javlja /login ruta
+Test #4: Displays errors when password is wrong
+Podaci: random email i password koristeći faker libarary
+asssert:
+Verifikovati da greska sadrzi poruku Wrong password
+Verifikovati da se u url-u stranice javlja /login ruta
+Test #5: Login
+Podaci:
+email: admin@admin.com
+password: 12345
+asssert:
+Verifikovati da se u url-u stranice javlja /home ruta
+Test #6: Logout
+assert:
+Verifikovati da je dugme logout vidljivo na stranici
+Verifikovati da se u url-u stranice javlja /login ruta
+Verifikovati da se nakon pokušaja otvaranja /home rute, u url-u
+stranice javlja /login ruta
+     */
 
 
     @Test(priority = 1)
@@ -58,17 +92,31 @@ public class LoginTest extends BaseTest {
         commonPage.getLoginPageButton().click();
         // getCurrentUrl() method.
 
-        BaseTest.sleep(10000);
+        sleep(5000);
 
       //  driverWait.until(ExpectedConditions.urlContains("/home"));
         String actualResult = driver.getCurrentUrl();
-        System.out.println("test1 actual: "+actualResult);
+      //  System.out.println("test1 actual: "+actualResult);
 
         Assert.assertEquals(actualResult, expectedResult);
     }
 
-
     @Test(priority = 2)
+    public void checkInputTypesTest(){
+        String expectedEmailTypeResult = "email";
+        String expectedPasswordTypeResult = "password";
+        commonPage.getLoginPageButton().click();
+        sleep(5000);
+        String actualEmailTypeResult = loginPage.getEmailField().getAttribute("type");
+        System.out.println("EmailType: "+actualEmailTypeResult);
+        Assert.assertEquals(actualEmailTypeResult, expectedEmailTypeResult);
+        String actualPasswordTypeResult = loginPage.getPasswordField().getAttribute("type");
+        Assert.assertEquals(actualPasswordTypeResult, expectedPasswordTypeResult);
+
+    }
+
+
+    @Test(priority = 5)
     public void login() {
         String expectedResult = "https://vue-demo.daniel-avellaneda.com/home";
         commonPage.getLoginPageButton().click();
@@ -76,7 +124,7 @@ public class LoginTest extends BaseTest {
 
          driverWait.until(ExpectedConditions.urlContains("/home"));
 
-      //  BaseTest.sleep(10000);
+      //  sleep(10000);
 
 
         String actualResult = driver.getCurrentUrl();

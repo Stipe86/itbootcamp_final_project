@@ -22,12 +22,16 @@ public class LoginPage extends BasePage {
 
     //*[@id="app"]/div/div/header/div/div[3]/a[3]
 
+    private By emailTypeAtribute = By.cssSelector("input[type='email']");
+
+    private By passwordTypeAtribute = By.cssSelector("input[type='password']");
+
 
     public WebElement getEmailField() {
         return getDriver().findElement(emailField);
     }
 
-    public WebElement getpasswordField() {
+    public WebElement getPasswordField() {
         return getDriver().findElement(passwordField);
     }
 
@@ -35,12 +39,20 @@ public class LoginPage extends BasePage {
         return getDriver().findElement(loginButton);
     }
 
+    public WebElement getEmailTypeAtribute() {
+        return getDriver().findElement(emailTypeAtribute);
+    }
+
+    public WebElement getPasswordTypeAtribute() {
+        return getDriver().findElement(passwordTypeAtribute);
+    }
+
     public void loginMethod (String email, String password) {
 
         getEmailField().clear();
-        getpasswordField().clear();
+        getPasswordField().clear();
         getEmailField().sendKeys(email);
-        getpasswordField().sendKeys(password);
+        getPasswordField().sendKeys(password);
         getloginButton().click();
 
 
