@@ -115,6 +115,22 @@ stranice javlja /login ruta
 
     }
 
+/*
+Test #4: Displays errors when password is wrong
+Podaci: email: admin@admin.com i proizvoljan password
+asssert:
+Verifikovati da greska sadrzi poruku Wrong password
+Verifikovati da se u url-u stranice javlja /login ruta
+
+//*[@id="app"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]
+//li[contains(text(),'Wrong password')]
+
+ */
+    @Test(priority = 4)
+    public void displayingErrorsWhenPasswordIsWrongTest(){
+
+    }
+
 
     @Test(priority = 5)
     public void login() {

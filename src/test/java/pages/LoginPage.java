@@ -27,6 +27,9 @@ public class LoginPage extends BasePage {
     private By passwordTypeAtribute = By.cssSelector("input[type='password']");
 
 
+    private By passwordErrorNotification = By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]");
+
+
     public WebElement getEmailField() {
         return getDriver().findElement(emailField);
     }
@@ -45,6 +48,10 @@ public class LoginPage extends BasePage {
 
     public WebElement getPasswordTypeAtribute() {
         return getDriver().findElement(passwordTypeAtribute);
+    }
+
+    public WebElement getPasswordErrorNotification() {
+        return getDriver().findElement(passwordErrorNotification);
     }
 
     public void loginMethod (String email, String password) {
