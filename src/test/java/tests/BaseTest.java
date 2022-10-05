@@ -35,11 +35,10 @@ public abstract class BaseTest {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(7));
         driverWait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
     }
 
 
-    public static void sleep(int miliseconds) {
+    public void sleep(int miliseconds) {
         try {
             Thread.sleep(miliseconds);
         } catch (InterruptedException e) {
@@ -59,6 +58,16 @@ public abstract class BaseTest {
     public void afterClass() {
         sleep(5000);
         driver.quit();
+    }
+
+    public String fakeEmail () {
+        String fakerEmail = faker.name().firstName().toLowerCase()+"@"+faker.name().firstName().toLowerCase()+".com";
+        return fakerEmail;
+    }
+
+    public String fakePassword () {
+        int pass = faker.number().numberBetween(10000, 99999);
+        return String.valueOf(pass);
     }
 
 }

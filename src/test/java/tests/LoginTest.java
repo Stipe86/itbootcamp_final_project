@@ -1,5 +1,6 @@
 package tests;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -115,6 +116,19 @@ stranice javlja /login ruta
 
     }
 
+    @Test(priority = 3)
+    public void displayingErrorsWhenUserDoesNotExistTest(){
+        String expectedResult = "User does not exists";
+        commonPage.getLoginPageButton().click();
+        String fakeEmail = fakeEmail();
+        String fakePassword = fakePassword();
+        loginPage.loginMethod(fakeEmail, fakePassword);
+        driverWait.until(ExpectedConditions.visibilityOf(loginPage.getErrorNotification()));
+        String actualResult = loginPage.getErrorNotification().findElement(loginPage.getEmailErrorNotification()).getText();
+        Assert.assertEquals(actualResult, expectedResult);
+
+    }
+
 /*
 Test #4: Displays errors when password is wrong
 Podaci: email: admin@admin.com i proizvoljan password
@@ -128,6 +142,15 @@ asssert:
  */
     @Test(priority = 4)
     public void displayingErrorsWhenPasswordIsWrongTest(){
+        String expectedResult = "Wrong password";
+        commonPage.getLoginPageButton().click();
+        loginPage.loginMethod("admin@admin.com", "12346");
+        driverWait.until(ExpectedConditions.visibilityOf(loginPage.getErrorNotification()));
+        String actualResult = loginPage.getErrorNotification().findElement(loginPage.getPasswordErrorNotification()).getText();
+        System.out.println("error msg: "+actualResult);
+        loginPage.getDriver().getCurrentUrl();
+        Assert.assertEquals(actualResult, expectedResult);
+        Assert.assertTrue(loginPage.getDriver().getCurrentUrl().contains("/login"));
 
     }
 

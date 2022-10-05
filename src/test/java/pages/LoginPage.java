@@ -22,12 +22,16 @@ public class LoginPage extends BasePage {
 
     //*[@id="app"]/div/div/header/div/div[3]/a[3]
 
-    private By emailTypeAtribute = By.cssSelector("input[type='email']");
+ //   private By emailTypeAtribute = By.cssSelector("input[type='email']");
 
-    private By passwordTypeAtribute = By.cssSelector("input[type='password']");
+ //   private By passwordTypeAtribute = By.cssSelector("input[type='password']");
+
+    private By errorNotification = By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]");
+
+    private By emailErrorNotification = By.xpath("//li[contains(text(),'User does not exists')]");
 
 
-    private By passwordErrorNotification = By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]");
+    private By passwordErrorNotification = By.xpath("//li[contains(text(),'Wrong password')]");
 
 
     public WebElement getEmailField() {
@@ -42,17 +46,29 @@ public class LoginPage extends BasePage {
         return getDriver().findElement(loginButton);
     }
 
-    public WebElement getEmailTypeAtribute() {
-        return getDriver().findElement(emailTypeAtribute);
+//    public WebElement getEmailTypeAtribute() {
+//        return getDriver().findElement(emailTypeAtribute);
+//    }
+//
+//    public WebElement getPasswordTypeAtribute() {
+//        return getDriver().findElement(passwordTypeAtribute);
+//    }
+
+    public WebElement getErrorNotification() {
+        return getDriver().findElement(errorNotification);
     }
 
-    public WebElement getPasswordTypeAtribute() {
-        return getDriver().findElement(passwordTypeAtribute);
+    public By getEmailErrorNotification() {
+        return emailErrorNotification;
     }
 
-    public WebElement getPasswordErrorNotification() {
-        return getDriver().findElement(passwordErrorNotification);
+    public By getPasswordErrorNotification() {
+        return passwordErrorNotification;
     }
+
+    //    public WebElement getPasswordErrorNotification() {
+//        return getDriver().findElement(passwordErrorNotification);
+//    }
 
     public void loginMethod (String email, String password) {
 
