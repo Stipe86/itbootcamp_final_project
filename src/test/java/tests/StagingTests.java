@@ -54,5 +54,53 @@ asssert:
 //
 //    }
 //
+//    Test #6: Logout
+//assert:
+//        Verifikovati da je dugme logout vidljivo na stranici
+//Verifikovati da se u url-u stranice javlja /login ruta
+//Verifikovati da se nakon pokušaja otvaranja /home rute, u url-u
+//    stranice javlja /login ruta
+
+/*
+Verifikovati da je dugme logout vidljivo na stranici
+Verifikovati da se u url-u stranice javlja /login ruta
+Verifikovati da se nakon pokušaja otvaranja /home rute, u url-u
+stranice javlja /login ruta (otvoriti sa driver.get home page i proveriti
+da li vas redirektuje na login)
+ */
+    @Test
+    public void logoutTest(){
+        String expectedResult = "https://vue-demo.daniel-avellaneda.com/login";
+        commonPage.getLoginPageButton().click();
+        loginPage.loginMethod("admin@admin.com", "12345");
+
+        driverWait.until(ExpectedConditions.visibilityOf(homePage.getLogoutBtn()));
+
+        Assert.assertTrue(homePage.getLogoutBtn().isDisplayed());
+
+//        String act = homePage.getLogoutBtn().getText();
+//        System.out.println("logout : "+act);
+
+        homePage.getLogoutBtn().click();
+
+        driverWait.until(ExpectedConditions.urlContains("/login"));
+
+        String actualResult = driver.getCurrentUrl();
+
+        Assert.assertEquals(actualResult, expectedResult);
+
+//        driver.getCurrentUrl().replaceAll("https://vue-demo.daniel-avellaneda.com/home", "https://vue-demo.daniel-avellaneda.com/login");
+
+        sleep(5000);
+
+        driver.get("https://vue-demo.daniel-avellaneda.com/home");
+
+        driverWait.until(ExpectedConditions.urlContains("/login"));
+
+        Assert.assertTrue(driver.getCurrentUrl().contains("/login"));
+
+
+
+    }
 
 }

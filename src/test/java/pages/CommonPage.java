@@ -19,6 +19,8 @@ public class CommonPage extends BasePage {
     private By signUpPageButton = By.xpath("//*[@id=\"app\"]/div/div/header/div/div[3]/a[4]");
 
 
+
+
     public WebElement getHomePageButton() {
         return getDriver().findElement(homePageButton);
     }

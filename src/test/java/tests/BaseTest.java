@@ -9,6 +9,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import pages.CommonPage;
+import pages.HomePage;
 import pages.LoginPage;
 
 import java.time.Duration;
@@ -17,6 +18,8 @@ public abstract class BaseTest {
     protected WebDriver driver;
 
     protected WebDriverWait driverWait;
+
+    protected HomePage homePage;
 
     protected LoginPage loginPage;
 
@@ -28,6 +31,7 @@ public abstract class BaseTest {
     public void beforeClass() {
         System.setProperty("webdriver.chrome.driver", "c:\\chromedriver.exe");
         driver = new ChromeDriver();
+        homePage = new HomePage(driver,driverWait);
         loginPage = new LoginPage(driver, driverWait);
         commonPage = new CommonPage(driver, driverWait);
         faker = new Faker();
@@ -51,6 +55,7 @@ public abstract class BaseTest {
         driver.get("https://vue-demo.daniel-avellaneda.com/");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(7));
+        driver.manage().deleteAllCookies();
     }
 
 
