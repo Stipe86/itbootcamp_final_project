@@ -2,6 +2,7 @@ package tests;
 
 import com.github.javafaker.Faker;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
@@ -11,8 +12,11 @@ import org.testng.annotations.BeforeMethod;
 import pages.CommonPage;
 import pages.HomePage;
 import pages.LoginPage;
+import pages.SignupPage;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class BaseTest {
     protected WebDriver driver;
@@ -25,6 +29,8 @@ public abstract class BaseTest {
 
     protected CommonPage commonPage;
 
+    protected SignupPage signupPage;
+
     protected Faker faker;
 
     @BeforeClass
@@ -34,6 +40,7 @@ public abstract class BaseTest {
         homePage = new HomePage(driver,driverWait);
         loginPage = new LoginPage(driver, driverWait);
         commonPage = new CommonPage(driver, driverWait);
+        signupPage = new SignupPage(driver, driverWait);
         faker = new Faker();
         driver.get("https://vue-demo.daniel-avellaneda.com/");
         driver.manage().window().maximize();
@@ -53,9 +60,28 @@ public abstract class BaseTest {
     @BeforeMethod
     public void beforeMethod(){
         driver.get("https://vue-demo.daniel-avellaneda.com/");
-        driver.manage().window().maximize();
+     //   driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(7));
         driver.manage().deleteAllCookies();
+
+    }
+
+    @AfterMethod
+      public void afterMethod(){
+        if (homePage.getListLogoutBtn().size() != 0 ){
+            homePage.getLogoutBtn().click();
+        }
+
+        if (signupPage.getListCloseDialogButton().size() !=0 ) {
+            signupPage.getCloseDialogButton().click();
+        }
+
+        if (signupPage.getListCloseLogoutButton().size() !=0 ) {
+            signupPage.getLogoutButton().click();
+        }
+//        checkVisibilityOfDialog();
+//        checkVisibilityOfLogoutButton();
+
     }
 
 
@@ -73,6 +99,27 @@ public abstract class BaseTest {
     public String fakePassword () {
         int pass = faker.number().numberBetween(10000, 99999);
         return String.valueOf(pass);
+    }
+
+    public String fakeName () {
+        String fakername = faker.name().firstName()+" "+faker.name().lastName();
+        return fakername;
+    }
+
+//    public boolean isPresent () {
+//        List<WebElement> logoutBtn = new ArrayList<>();
+//    }
+
+    public void checkVisibilityOfDialog () {
+        if (signupPage.getListCloseDialogButton().size() !=0) {
+            signupPage.getCloseDialogButton().click();
+        }
+    }
+
+    public void checkVisibilityOfLogoutButton () {
+        if (signupPage.getListCloseLogoutButton().size() !=0) {
+            signupPage.getLogoutButton().click();
+        }
     }
 
 }

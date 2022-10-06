@@ -28,6 +28,8 @@ public class LoginPage extends BasePage {
 
     private By errorNotification = By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]");
 
+    //*[@id="app"]/div[1]/main/div/div[2]/div/div/div[3]/div/div/div/div/div[1]
+
     private By emailErrorNotification = By.xpath("//li[contains(text(),'User does not exists')]");
 
 

@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 public class HomePage extends BasePage {
 
     public HomePage(WebDriver driver, WebDriverWait driverWait) {
@@ -16,5 +18,9 @@ public class HomePage extends BasePage {
 
     public WebElement getLogoutBtn() {
         return getDriver().findElement(logoutBtn);
+    }
+
+    public List<WebElement> getListLogoutBtn() {
+        return getDriver().findElements(logoutBtn);
     }
 }

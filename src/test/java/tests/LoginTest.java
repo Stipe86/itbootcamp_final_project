@@ -96,10 +96,18 @@ asssert:
 
         Assert.assertEquals(actualResult, expectedResult);
 
+      //  Assert.assertTrue(homePage.getLogoutBtn().isDisplayed());
+
+//        if (homePage.getLogoutBtn().isDisplayed()){
+//            homePage.getLogoutBtn().click();
+//        }
+
+
+
     }
 
 
-    @Test   //  (priority = 6) problem
+    @Test (priority = 6)
     public void logoutTest(){
         String expectedResult = "https://vue-demo.daniel-avellaneda.com/login";
         commonPage.getLoginPageButton().click();
