@@ -31,14 +31,18 @@ public class SignupPage extends BasePage {
 
     private By signupDialog = By.xpath("//div[@class='v-card__title headline grey lighten-2 black--text dlgVerifyAccount']");
 
-    private By closeDialogButton = By.xpath("//*[@id=\"app\"]/div[4]/div/div/div[3]/button");
+//    private By closeDialogButton = By.xpath("//*[@id=\"app\"]/div[4]/div/div/div[3]/button");
+    private By closeDialogButton = By.xpath("//button[contains(@class, 'btnClose')]");
+//    private By closeDialogButton = By.xpath("//button[text()='Close']");
 
-    private By logoutButton = By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button[1]");
+//    private By logoutButton = By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button[1]");
+    private By logoutButton = By.xpath("//button[contains(@class, 'btnLogout')]");
+//    private By logoutButton = By.xpath("//i[contains(@class, 'mdi-exit-to-app' )]/ancestor::button");
 
 //    private  List<WebElement> listCloseDialogButton = getDriver().findElements(closeDialogButton);
 //
 //    private List<WebElement> listLogoutButton = getDriver().findElements(logoutButton);
-
+//i[contains(@class, 'mdi-exit-to-app' )]/ancestor::button
 
     public WebElement getNameField() {
         return getDriver().findElement(nameField);
@@ -84,7 +88,7 @@ public class SignupPage extends BasePage {
      String   name = "Test Test";
       String  email = "admin@admin.com";
        String password = "123654";
-       String confirmpassword = "123654";
+       String confirmPassword = "123654";
         getNameField().clear();
         getEmailField().clear();
         getPasswordField().clear();
@@ -92,7 +96,7 @@ public class SignupPage extends BasePage {
         getNameField().sendKeys(name);
         getEmailField().sendKeys(email);
         getPasswordField().sendKeys(password);
-        getConfirmPasswordField().sendKeys(confirmpassword);
+        getConfirmPasswordField().sendKeys(confirmPassword);
         getSignMeUpButton().click();
     }
 
@@ -140,10 +144,14 @@ public class SignupPage extends BasePage {
         return getDriver().findElements(closeDialogButton);
     }
 
-    public List<WebElement> getListCloseLogoutButton() {
+    public List<WebElement> getListLogoutButton() {
         return getDriver().findElements(logoutButton);
     }
 
-
+    public void clickOnLogoutBtn() {
+        if (getListLogoutButton().size() !=0) {
+            getLogoutButton().click();
+        }
+    }
 
 }

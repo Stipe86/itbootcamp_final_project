@@ -13,7 +13,14 @@ public class HomePage extends BasePage {
         super(driver, driverWait);
     }
 
-    private By logoutBtn = By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button[2]");
+//    private By logoutBtn = By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button[2]");
+    private By logoutBtn = By.xpath("//button[contains(@class, 'btnLogout')]");
+    // //i[contains(@class, 'mdi-exit-to-app' )]/ancestor::button
+    private By adminButton = By.xpath("//i[contains(@class, 'mdi-lock')]/ancestor::button");
+
+    private By citiesButton = By.xpath("//a[@href='/admin/cities']");
+
+    private By usersButton = By.xpath("//a[@href='/admin/users']");
 
 
     public WebElement getLogoutBtn() {
@@ -22,5 +29,17 @@ public class HomePage extends BasePage {
 
     public List<WebElement> getListLogoutBtn() {
         return getDriver().findElements(logoutBtn);
+    }
+
+    public WebElement getAdminButton() {
+        return getDriver().findElement(adminButton);
+    }
+
+    public WebElement getCitiesButton() {
+        return getDriver().findElement(citiesButton);
+    }
+
+    public WebElement getUsersButton() {
+        return getDriver().findElement(usersButton);
     }
 }

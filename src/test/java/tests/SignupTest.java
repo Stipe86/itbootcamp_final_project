@@ -62,6 +62,8 @@ assert:
 
     @Test
     public void checkInputTypes(){
+   //     sleep(5000);
+    //    driverWait.until(ExpectedConditions.elementToBeClickable(commonPage.getSignUpPageButton()));
         String expectedEmailTypeResult = "email";
         String expectedPasswordTypeResult = "password";
         String expectedConfirmPasswordTypeResult = "password";
@@ -111,14 +113,15 @@ assert:
     Verify your account*/
 
     @Test
-    public void SignupTest(){
+    public void signupTest(){
         String expectedResult = "IMPORTANT: Verify your account";
         commonPage.getSignUpPageButton().click();
         driverWait.until(ExpectedConditions.visibilityOf(signupPage.getNameField()));
 //        String fakename = fakeName();
 //        String fakeEmail = fakeEmail();
 //        String fakePassword = fakePassword();
-        signupPage.signUpMethod(fakeName(), fakeEmail(), fakePassword());
+        signupPage.signUpMethod(randomName(), randomEmail(), randomPassword());
+//        signupPage.signUpMethodMyCredentials();
         driverWait.until(ExpectedConditions.visibilityOf(signupPage.getSignupDialog()));
         String actualResult = signupPage.getSignupDialog().getText().trim();
         Assert.assertEquals(actualResult, expectedResult);
@@ -126,12 +129,5 @@ assert:
 //        signupPage.getLogoutButton().click();
 
     }
-
-
-
-
-
-
-
 
 }

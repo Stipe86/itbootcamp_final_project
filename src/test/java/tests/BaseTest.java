@@ -1,22 +1,20 @@
 package tests;
 
 import com.github.javafaker.Faker;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import pages.CommonPage;
-import pages.HomePage;
-import pages.LoginPage;
-import pages.SignupPage;
+import pages.*;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class BaseTest {
     protected WebDriver driver;
@@ -31,6 +29,8 @@ public abstract class BaseTest {
 
     protected SignupPage signupPage;
 
+    protected AdminCitiesPage adminCitiesPage;
+
     protected Faker faker;
 
     @BeforeClass
@@ -41,11 +41,12 @@ public abstract class BaseTest {
         loginPage = new LoginPage(driver, driverWait);
         commonPage = new CommonPage(driver, driverWait);
         signupPage = new SignupPage(driver, driverWait);
+        adminCitiesPage = new AdminCitiesPage(driver, driverWait);
         faker = new Faker();
         driver.get("https://vue-demo.daniel-avellaneda.com/");
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(7));
-        driverWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+        driverWait = new WebDriverWait(driver, Duration.ofSeconds(3));
     }
 
 
@@ -61,24 +62,25 @@ public abstract class BaseTest {
     public void beforeMethod(){
         driver.get("https://vue-demo.daniel-avellaneda.com/");
      //   driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(7));
+     //   driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(7));
         driver.manage().deleteAllCookies();
 
     }
 
     @AfterMethod
       public void afterMethod(){
-        if (homePage.getListLogoutBtn().size() != 0 ){
-            homePage.getLogoutBtn().click();
-        }
+//        if (homePage.getListLogoutBtn().size() != 0 ){
+//            homePage.getLogoutBtn().click();
+//        }
 
         if (signupPage.getListCloseDialogButton().size() !=0 ) {
             signupPage.getCloseDialogButton().click();
         }
 
-        if (signupPage.getListCloseLogoutButton().size() !=0 ) {
-            signupPage.getLogoutButton().click();
-        }
+        signupPage.clickOnLogoutBtn();
+//        if (signupPage.getListLogoutButton().size() !=0 ) {
+//            signupPage.getLogoutButton().click();
+//        }
 //        checkVisibilityOfDialog();
 //        checkVisibilityOfLogoutButton();
 
@@ -91,19 +93,30 @@ public abstract class BaseTest {
         driver.quit();
     }
 
-    public String fakeEmail () {
+    public String adminEmail (){
+        return "admin@admin.com";
+    }
+    public String adminPassword () {
+        return "12345";
+    }
+
+    public String randomEmail() {
         String fakerEmail = faker.name().firstName().toLowerCase()+"@"+faker.name().firstName().toLowerCase()+".com";
         return fakerEmail;
     }
 
-    public String fakePassword () {
+    public String randomPassword() {
         int pass = faker.number().numberBetween(10000, 99999);
         return String.valueOf(pass);
     }
 
-    public String fakeName () {
+    public String randomName() {
         String fakername = faker.name().firstName()+" "+faker.name().lastName();
         return fakername;
+    }
+    public String randomCity() {
+        String fakerCity = faker.address().city();
+        return fakerCity;
     }
 
 //    public boolean isPresent () {
@@ -117,9 +130,10 @@ public abstract class BaseTest {
     }
 
     public void checkVisibilityOfLogoutButton () {
-        if (signupPage.getListCloseLogoutButton().size() !=0) {
+        if (signupPage.getListLogoutButton().size() !=0) {
             signupPage.getLogoutButton().click();
         }
     }
+
 
 }

@@ -1,19 +1,8 @@
 package tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.*;
-import pages.BasePage;
-import pages.CommonPage;
-import pages.LoginPage;
 import org.testng.annotations.Test;
-
-import java.time.Duration;
 
 public class LoginTest extends BaseTest {
 
@@ -21,7 +10,7 @@ public class LoginTest extends BaseTest {
 
 
     @Test(priority = 1)
-    public void testVisitsTheLoginPageAssert() {
+    public void visitsTheLoginPageTest() {
         String expectedResult = "https://vue-demo.daniel-avellaneda.com/login";
         commonPage.getLoginPageButton().click();
         driverWait.until(ExpectedConditions.urlContains("/login"));
@@ -49,9 +38,9 @@ public class LoginTest extends BaseTest {
     public void displayingErrorsWhenUserDoesNotExistTest(){
         String expectedResult = "User does not exists";
         commonPage.getLoginPageButton().click();
-        String fakeEmail = fakeEmail();
-        String fakePassword = fakePassword();
-        loginPage.loginMethod(fakeEmail, fakePassword);
+//        String fakeEmail = fakeEmail();
+//        String fakePassword = fakePassword();
+        loginPage.loginMethod(randomEmail(), randomPassword());
         driverWait.until(ExpectedConditions.visibilityOf(loginPage.getErrorNotification()));
         String actualResult = loginPage.getErrorNotification().findElement(loginPage.getEmailErrorNotification()).getText();
         Assert.assertEquals(actualResult, expectedResult);
@@ -73,7 +62,7 @@ asssert:
     public void displayingErrorsWhenPasswordIsWrongTest(){
         String expectedResult = "Wrong password";
         commonPage.getLoginPageButton().click();
-        loginPage.loginMethod("admin@admin.com", "12346");
+        loginPage.loginMethod(adminEmail(), randomPassword());
         driverWait.until(ExpectedConditions.visibilityOf(loginPage.getErrorNotification()));
         String actualResult = loginPage.getErrorNotification().findElement(loginPage.getPasswordErrorNotification()).getText();
         System.out.println("error msg: "+actualResult);
@@ -88,7 +77,7 @@ asssert:
     public void login() {
         String expectedResult = "https://vue-demo.daniel-avellaneda.com/home";
         commonPage.getLoginPageButton().click();
-        loginPage.loginMethod("admin@admin.com", "12345");
+        loginPage.loginMethod(adminEmail(), adminPassword());
 
          driverWait.until(ExpectedConditions.urlContains("/home"));
 
@@ -112,7 +101,7 @@ asssert:
         String expectedResult = "https://vue-demo.daniel-avellaneda.com/login";
         commonPage.getLoginPageButton().click();
         driverWait.until(ExpectedConditions.visibilityOf(loginPage.getEmailField()));
-        loginPage.loginMethod("admin@admin.com", "12345");
+        loginPage.loginMethod(adminEmail(), adminPassword());
         driverWait.until(ExpectedConditions.visibilityOf(homePage.getLogoutBtn()));
         Assert.assertTrue(homePage.getLogoutBtn().isDisplayed());
 
