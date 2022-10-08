@@ -1,10 +1,8 @@
 package tests;
 
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class AdminCitiesTest extends BaseTest {
@@ -89,8 +87,8 @@ assert:
         homePage.getCitiesButton().click();
         driverWait.until(ExpectedConditions.urlContains("/admin/cities"));
         String city = adminCitiesPage.getCityName();
-//        adminCitiesPage.setCityName(city);
-        adminCitiesPage.getAddCityMethod(city);
+        adminCitiesPage.setCityName(city);
+        adminCitiesPage.makeNewCityMethod(city);
         driverWait.until(ExpectedConditions.visibilityOf(adminCitiesPage.getConfimationMessage()));
         String actualResult = adminCitiesPage.getConfimationMessage().getText().trim();
         Assert.assertTrue(actualResult.contains(expectedResult));
@@ -127,10 +125,13 @@ assert:
         String city = adminCitiesPage.getCityName();
 //        adminCitiesPage.getAddCityMethod(city);
         driverWait.until(ExpectedConditions.elementToBeClickable(adminCitiesPage.getEditButton()));
-        adminCitiesPage.clickEditForCity(city);
+ //       adminCitiesPage.editCityName(city, " edit");
 //        adminCitiesPage.getTableRow1EditButton().click();
+        adminCitiesPage.editCity(city, city+" edit");
+        String newName = city+" edit";
+        adminCitiesPage.setCityName(newName);
         driverWait.until(ExpectedConditions.visibilityOf(adminCitiesPage.getEditField()));
-        adminCitiesPage.getEditCityNameMethod(" edit");
+     //   adminCitiesPage.editCityNameMethod(" edit");
         driverWait.until(ExpectedConditions.visibilityOf(adminCitiesPage.getConfimationMessage()));
         String actualResult = adminCitiesPage.getConfimationMessage().getText().trim();
         System.out.println("Actual confirmation message: " +actualResult);
@@ -156,5 +157,70 @@ assert:
 //        }
 
     }
+
+    @Test(priority = 4)
+    public void searchCityTest() {
+     //   String expectedResult = "Saved successfully";
+        commonPage.getLoginPageButton().click();
+        driverWait.until(ExpectedConditions.visibilityOf(loginPage.getEmailField()));
+        loginPage.loginMethod(adminEmail(), adminPassword());
+        driverWait.until(ExpectedConditions.visibilityOf(homePage.getAdminButton()));
+        homePage.getAdminButton().click();
+        driverWait.until(ExpectedConditions.visibilityOf(homePage.getCitiesButton()));
+        homePage.getCitiesButton().click();
+        driverWait.until(ExpectedConditions.urlContains("/admin/cities"));
+    //    adminCitiesPage.setCityName(adminCitiesPage.getCityName()+" edit");
+        String city = adminCitiesPage.getCityName();
+        adminCitiesPage.inputTextInSearchField(city);
+        driverWait.until(ExpectedConditions.numberOfElementsToBe(adminCitiesPage.getTableCityRowsLocator(),1));
+        sleep(5000);
+        String expectedResult = city;
+        String actualResult = adminCitiesPage.getTableCityRow1().getText();
+        System.out.println("text of row1: "+adminCitiesPage.getTableCityRow1().getText());
+        Assert.assertTrue(actualResult.contains(expectedResult));
+
+
+    }
+
+    /*
+    Test #5: Delete city
+Podaci: editovani grad iz testa #3
+assert:
+U polje za pretragu uneti staro ime grada
+Sacekati da broj redova u tabeli bude 1
+Verifikovati da se u Name koloni prvog reda nalazi tekst iz pretrage
+Kliknuti na dugme Delete iz prvog reda
+Sacekati da se dijalog za brisanje pojavi
+Kliknuti na dugme Delete iz dijaloga
+Sacekati da popu za prikaz poruke bude vidljiv
+Verifikovati da poruka sadrzi tekst Deleted successfully
+     */
+
+    @Test(priority = 5)
+    public void deleteCityTest(){
+        commonPage.getLoginPageButton().click();
+        driverWait.until(ExpectedConditions.visibilityOf(loginPage.getEmailField()));
+        loginPage.loginMethod(adminEmail(), adminPassword());
+        driverWait.until(ExpectedConditions.visibilityOf(homePage.getAdminButton()));
+        homePage.getAdminButton().click();
+        driverWait.until(ExpectedConditions.visibilityOf(homePage.getCitiesButton()));
+        homePage.getCitiesButton().click();
+        driverWait.until(ExpectedConditions.urlContains("/admin/cities"));
+        String city = adminCitiesPage.getCityName();
+        adminCitiesPage.inputTextInSearchField(city);
+        driverWait.until(ExpectedConditions.numberOfElementsToBe(adminCitiesPage.getTableCityRowsLocator(),1));
+        sleep(5000);
+        String expectedResult = city;
+        String actualResult = adminCitiesPage.getTableCityRow1().getText();
+        Assert.assertTrue(actualResult.contains(expectedResult));
+        adminCitiesPage.deleteCity(city);
+        driverWait.until(ExpectedConditions.visibilityOf(adminCitiesPage.getDeleteConfirmationMessage()));
+        String expectedResult2 = "Deleted successfully";
+        String actualResult2 = adminCitiesPage.getDeleteConfirmationMessage().getText().trim();
+        Assert.assertTrue(actualResult2.contains(expectedResult2));
+    }
+
+
+
 
 }
