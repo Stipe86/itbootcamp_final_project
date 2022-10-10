@@ -31,6 +31,8 @@ public abstract class BaseTest {
 
     protected AdminCitiesPage adminCitiesPage;
 
+    protected MyProfilePage myProfilePage;
+
     protected Faker faker;
 
     @BeforeClass
@@ -42,6 +44,7 @@ public abstract class BaseTest {
         commonPage = new CommonPage(driver, driverWait);
         signupPage = new SignupPage(driver, driverWait);
         adminCitiesPage = new AdminCitiesPage(driver, driverWait);
+        myProfilePage = new MyProfilePage(driver, driverWait);
         faker = new Faker();
         driver.get("https://vue-demo.daniel-avellaneda.com/");
         driver.manage().window().maximize();

@@ -120,8 +120,8 @@ assert:
 //        String fakename = fakeName();
 //        String fakeEmail = fakeEmail();
 //        String fakePassword = fakePassword();
-        signupPage.signUpMethod(randomName(), randomEmail(), randomPassword());
-//        signupPage.signUpMethodMyCredentials();
+//        signupPage.signUpMethod(randomName(), randomEmail(), randomPassword());
+        signupPage.signUpMethodMyCredentials();
         driverWait.until(ExpectedConditions.visibilityOf(signupPage.getSignupDialog()));
         String actualResult = signupPage.getSignupDialog().getText().trim();
         Assert.assertEquals(actualResult, expectedResult);

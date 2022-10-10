@@ -29,7 +29,7 @@ public class SignupPage extends BasePage {
 
 //    private By signupDialog = By.xpath("//*[@id=\"app\"]/div[4]/div/div/div[1]");
 
-    private By signupDialog = By.xpath("//div[@class='v-card__title headline grey lighten-2 black--text dlgVerifyAccount']");
+    private By signupDialog = By.xpath("//div[contains(@class, 'dlgVerifyAccount')]");
 
 //    private By closeDialogButton = By.xpath("//*[@id=\"app\"]/div[4]/div/div/div[3]/button");
     private By closeDialogButton = By.xpath("//button[contains(@class, 'btnClose')]");

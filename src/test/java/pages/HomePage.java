@@ -22,6 +22,10 @@ public class HomePage extends BasePage {
 
     private By usersButton = By.xpath("//a[@href='/admin/users']");
 
+    private By myProfileButton = By.xpath("//a[contains(@class, 'btnProfile')]");
+
+    private By header = By.cssSelector("h1");
+
 
     public WebElement getLogoutBtn() {
         return getDriver().findElement(logoutBtn);
@@ -41,5 +45,13 @@ public class HomePage extends BasePage {
 
     public WebElement getUsersButton() {
         return getDriver().findElement(usersButton);
+    }
+
+    public WebElement getMyProfileButton() {
+        return getDriver().findElement(myProfileButton);
+    }
+
+    public WebElement getHeader() {
+        return getDriver().findElement(header);
     }
 }
