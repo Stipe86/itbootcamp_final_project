@@ -64,29 +64,17 @@ public abstract class BaseTest {
     @BeforeMethod
     public void beforeMethod(){
         driver.get("https://vue-demo.daniel-avellaneda.com/");
-     //   driver.manage().window().maximize();
-     //   driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(7));
         driver.manage().deleteAllCookies();
 
     }
 
     @AfterMethod
       public void afterMethod(){
-//        if (homePage.getListLogoutBtn().size() != 0 ){
-//            homePage.getLogoutBtn().click();
-//        }
-
         if (signupPage.getListCloseDialogButton().size() !=0 ) {
             signupPage.getCloseDialogButton().click();
         }
 
         signupPage.clickOnLogoutBtn();
-//        if (signupPage.getListLogoutButton().size() !=0 ) {
-//            signupPage.getLogoutButton().click();
-//        }
-//        checkVisibilityOfDialog();
-//        checkVisibilityOfLogoutButton();
-
     }
 
 
@@ -104,7 +92,7 @@ public abstract class BaseTest {
     }
 
     public String randomEmail() {
-        String fakerEmail = faker.name().firstName().toLowerCase()+"@"+faker.name().firstName().toLowerCase()+".com";
+        String fakerEmail = faker.internet().emailAddress();
         return fakerEmail;
     }
 
@@ -122,9 +110,6 @@ public abstract class BaseTest {
         return fakerCity;
     }
 
-//    public boolean isPresent () {
-//        List<WebElement> logoutBtn = new ArrayList<>();
-//    }
 
     public void checkVisibilityOfDialog () {
         if (signupPage.getListCloseDialogButton().size() !=0) {

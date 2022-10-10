@@ -14,7 +14,13 @@ public class LoginPage extends BasePage {
 
     private By passwordField = By.id("password");
 
-    private By loginButton = By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[3]/span/form/div/div[3]/button");
+//    private By loginButton = By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[3]/span/form/div/div[3]/button");
+
+    private By loginButton = By.xpath("//button/span[text()='Login']");
+
+
+    //button/span[text()='Login']
+    //button[@type= 'submit']
 
     //*[@id="app"]/div/div/header/div/div[3]/a[3]
 

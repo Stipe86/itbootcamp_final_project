@@ -55,7 +55,7 @@ public class AdminCitiesPage extends BasePage{
 
     private By tableCityRows = By.xpath("//table/tbody/tr");
 
-    private By tableCityRow1 = By.xpath("//table/tbody/tr[1]");
+    private By tableCityRow1 = By.xpath("//table/tbody/tr[1]/td[2]");
 
     private By searchField = By.id(("search"));
 
@@ -131,7 +131,7 @@ public class AdminCitiesPage extends BasePage{
         return getDriver().findElement(deleteConfirmButton);
     }
 
-    public void makeNewCityMethod(String cityName){
+    public void makeNewCityNameMethod(String cityName){
         getNewItemButton().click();
         getInputField().sendKeys(cityName);
         getSaveButton().click();
@@ -158,6 +158,7 @@ public class AdminCitiesPage extends BasePage{
                         break;
                     case DELETE:
                         singleRow.findElement(deleteButton).click();
+                        break;
                 }
                 break;
             }
