@@ -14,13 +14,16 @@ public class AdminCitiesTest extends BaseTest {
     }
 
 
+
 //    Test #1: Visits the admin cities page and list cities
-//    Podaci:
-//            admin email: admin@admin.com
-//admin password: 12345
-//            assert:
-//            Verifikovati da se u url-u stranice javlja /admin/cities ruta
-//Verifikovati postojanje logut dugmeta
+//    Data:
+//    admin email: admin@admin.com
+//    admin password: 12345
+//    Assert:
+//    Verify that url contains '/admin/cities'
+//    Verify that 'Logout' button is displayed
+
+
 
     @Test(priority = 1)
     public void visitsTheAdminCitiesPageAndListCitiesTest(){
@@ -35,6 +38,7 @@ public class AdminCitiesTest extends BaseTest {
         // Navigate to 'Cities' page
         homePage.getAdminButton().click();
         driverWait.until(ExpectedConditions.visibilityOf(homePage.getCitiesButton()));
+
         homePage.getCitiesButton().click();
         driverWait.until(ExpectedConditions.visibilityOf(adminCitiesPage.getLogoutButton()));
 
@@ -47,9 +51,10 @@ public class AdminCitiesTest extends BaseTest {
 
 
 //    Test #2: Create new city
-//    Podaci: random grad korisćenjem faker library-ja
-//assert:
-//        Verifikovati da poruka sadrzi tekst Saved successfully
+//    Data:
+//    random city using faker library
+//    Assert:
+//    Verify message contains text 'Saved successfully'
 
     @Test(priority = 2)
     public void createNewCityTest() {
@@ -81,10 +86,11 @@ public class AdminCitiesTest extends BaseTest {
 
 
 //    Test #3: Edit city
-//    Podaci: edituje se grad koji je u testu 2 kreiran na isto ime + - edited
-//            (primer: Beograd – Beograd edited)
-//assert:
-//        Verifikovati da poruka sadrzi tekst Saved successfully
+//    Data:
+//    edit city that was made in test #2 to be - current city name + 'edited'
+//    (example: New York - New York edited)
+//    Assert:
+//    Verify that message contains text 'Saved successfully'
 
     @Test(priority = 3)
     public void editCityTest() {
@@ -104,14 +110,14 @@ public class AdminCitiesTest extends BaseTest {
         homePage.getCitiesButton().click();
         driverWait.until(ExpectedConditions.urlContains("/admin/cities"));
 
-        // Replace city name that was setup in the 'BeforeClass' with new name
+        // Replace city name that was set in the 'BeforeClass' with a new name
         String city = adminCitiesPage.getCityName();
         driverWait.until(ExpectedConditions.elementToBeClickable(adminCitiesPage.getEditButton()));
-        adminCitiesPage.editCity(city, city+" edit");
+        adminCitiesPage.editCity(city, city+" edited");
         driverWait.until(ExpectedConditions.visibilityOf(adminCitiesPage.getConfimationMessage()));
 
         // Set that new name so that it can be used in following tests
-        String newName = city+" edit";
+        String newName = city+" edited";
         adminCitiesPage.setCityName(newName);
 
         // Verify that confirmation message contains text 'Saved successfully'
@@ -120,12 +126,13 @@ public class AdminCitiesTest extends BaseTest {
 
     }
 
-    /*
-    Test #4: Search city
-Podaci: editovani grad iz testa #3
-assert:
-Verifikovati da se u Name koloni prvog reda nalazi tekst iz pretrage
-     */
+
+//    Test #4: Search city
+//    Data:
+//    edited city from test #3
+//    Assert:
+//    Verify that text in the first row of the table matches the input in 'Search' field
+
 
     @Test(priority = 4)
     public void searchCityTest() {
@@ -141,33 +148,31 @@ assert:
         homePage.getCitiesButton().click();
         driverWait.until(ExpectedConditions.urlContains("/admin/cities"));
 
-        // Search for city that was edit in test 3
+        // Search for city that was edit in test #3
         String city = adminCitiesPage.getCityName();
         adminCitiesPage.inputTextInSearchField(city);
         driverWait.until(ExpectedConditions.numberOfElementsToBe(adminCitiesPage.getTableCityRowsLocator(),1));
-        sleep(5000);
 
         // Verify that text in the first row of the table matches the input in 'Search' field
         String expectedResult = city;
         String actualResult = adminCitiesPage.getTableCityRow1().getText();
         Assert.assertEquals(actualResult, expectedResult);
 
-
     }
 
-    /*
-    Test #5: Delete city
-Podaci: editovani grad iz testa #3
-assert:
-U polje za pretragu uneti staro ime grada
-Sacekati da broj redova u tabeli bude 1
-Verifikovati da se u Name koloni prvog reda nalazi tekst iz pretrage
-Kliknuti na dugme Delete iz prvog reda
-Sacekati da se dijalog za brisanje pojavi
-Kliknuti na dugme Delete iz dijaloga
-Sacekati da popu za prikaz poruke bude vidljiv
-Verifikovati da poruka sadrzi tekst Deleted successfully
-     */
+
+//    Test #5: Delete city
+//    Data:
+//    edited city from test #3
+//    Assert:
+//    In search field input city edited name from test #3
+//    Wait number of table rows to be 1
+//    Verify that text in the row matches the input in 'Search' field
+//    Click on that first row delete button
+//    Wait for the delete dialog to be visible
+//    Click on delete button in dialog
+//    Wait for delete confirmation message to be visible
+//    Verify that confirmation message contains text 'Deleted successfully'
 
     @Test(priority = 5)
     public void deleteCityTest(){
@@ -187,7 +192,6 @@ assert:
         String city = adminCitiesPage.getCityName();
         adminCitiesPage.inputTextInSearchField(city);
         driverWait.until(ExpectedConditions.numberOfElementsToBe(adminCitiesPage.getTableCityRowsLocator(),1));
-        sleep(5000);   // doesn't work without sleep
 
         // Verify that text in the first row of the table matches the input in 'Search' field
         String expectedResult = city;

@@ -49,7 +49,7 @@ public abstract class BaseTest {
         driver.get("https://vue-demo.daniel-avellaneda.com/");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
-        driverWait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        driverWait = new WebDriverWait(driver, Duration.ofSeconds(6));
     }
 
 
@@ -70,9 +70,7 @@ public abstract class BaseTest {
 
     @AfterMethod
       public void afterMethod(){
-        if (signupPage.getListCloseDialogButton().size() !=0 ) {
-            signupPage.getCloseDialogButton().click();
-        }
+        signupPage.clickCloseDialogButton();
 
         signupPage.clickOnLogoutBtn();
     }
@@ -101,29 +99,11 @@ public abstract class BaseTest {
         return String.valueOf(pass);
     }
 
-    public String randomName() {
-        String fakername = faker.name().firstName()+" "+faker.name().lastName();
-        return fakername;
-    }
+
     public String randomCity() {
         String fakerCity = faker.address().city();
         return fakerCity;
     }
-
-
-    public void checkVisibilityOfDialog () {
-        if (signupPage.getListCloseDialogButton().size() !=0) {
-            signupPage.getCloseDialogButton().click();
-        }
-    }
-
-    public void checkVisibilityOfLogoutButton () {
-        if (signupPage.getListLogoutButton().size() !=0) {
-            signupPage.getLogoutButton().click();
-        }
-    }
-
-
 
 
 }

@@ -7,13 +7,11 @@ import org.testng.annotations.Test;
 
 public class LocaleTest extends BaseTest {
 
-    /*
-    Test #1: Set locale to ES
-assert:
-Postaviti jezik na ES
-Verifikovati da se na stranici u hederu javlja tekst Página de
-aterrizaje
-     */
+//   Test #1: Set locale to 'ES'
+//   Assert:
+//   Set language to 'ES'
+//   Verify that page header has text 'Página de aterrizaje'
+
     @Test
     public void setLocaleToESTest() {
         String expectedResult = "Página de aterrizaje";
@@ -31,12 +29,10 @@ aterrizaje
         Assert.assertEquals(actualResult, expectedResult);
     }
 
-   /*
-   Test #2: Set locale to EN
-assert:
-        Postaviti jezik na EN
-Verifikovati da se na stranici u hederu javlja tekst Landing
-*/
+//   Test #2: Set locale to 'EN'
+//   Assert:
+//   Set language to 'EN'
+//   Verify that page header has text 'Landing'
 
     @Test
     public void setLocaleToENTest() {
@@ -55,13 +51,10 @@ assert:
         Assert.assertEquals(actualResult, expectedResult);
     }
 
-    /*
-    Test #3: Set locale to FR
-assert:
-Postaviti jezik na FR
-Verifikovati da se na stranici u hederu javlja tekst Page
-d'atterrissage
-     */
+//   Test #1: Set locale to 'FR'
+//   Assert:
+//   Set language to 'FR'
+//   Verify that page header has text 'Page d'atterrissage'
 
     @Test
     public void setLocaleToFRTest() {
@@ -78,9 +71,7 @@ d'atterrissage
         // Verify that page header has text 'Page d'atterrissage'
         String actualResult = homePage.getHeader().getText();
         Assert.assertEquals(actualResult, expectedResult);
-
     }
-
 
 
 

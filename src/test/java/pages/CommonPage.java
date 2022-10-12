@@ -10,25 +10,21 @@ public class CommonPage extends BasePage {
         super(driver, driverWait);
     }
 
-    private By homePageButton = By.xpath("//*[@id=\"app\"]/div/div/header/div/div[3]/a[1]");
+    private By homePageButton = By.xpath("//a[@href= '/']/span[contains(text(), 'Home')]");
 
     private By loginPageButton = By.xpath("//a[contains(@class, 'btnLogin')][@href='/login']");
 
-    private By aboutPageButton = By.xpath("//*[@id=\"app\"]/div/div/header/div/div[3]/a[2]");
+    private By aboutPageButton = By.xpath("//a[@href= '/about']/span[contains(text(), 'About')]");
 
-    private By signUpPageButton = By.xpath("//*[@id=\"app\"]/div/div/header/div/div[3]/a[4]");
-
+    private By signUpPageButton = By.xpath("//a[contains(@class, 'btnLogin')][@href= '/signup']");
 
     private By localeButton = By.xpath("//button[contains(@class,  'btnLocaleActivation')]");
 
     private By espButton = By.xpath("//span[contains(@class,  'f-es')]");
 
-
     private By engButton = By.xpath("//span[contains(@class,  'f-gb')]");
 
     private By fraButton = By.xpath("//span[contains(@class,  'f-fr')]");
-
-
 
 
     public WebElement getHomePageButton() {
@@ -62,6 +58,8 @@ public class CommonPage extends BasePage {
     public WebElement getFraButton() {
         return getDriver().findElement(fraButton);
     }
+
+
 }
 
 

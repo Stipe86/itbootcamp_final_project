@@ -6,11 +6,9 @@ import org.testng.annotations.Test;
 
 public class SignupTest extends BaseTest{
 
-/*
-Test #1: Visits the signup page
-assert:
-Verifikovati da se u url-u stranice javlja /signup ruta
- */
+//    Test #1: Visits the signup page
+//    Assert:
+//    Verify that the route '/signup' appears in the url of the page
 
     @Test
     public void visitsTheSignUpPage(){
@@ -23,14 +21,11 @@ assert:
 
     }
 
-/*    Test #2: Checks input types
-assert:
-        Verifikovati da polje za unos emaila za atribut type ima vrednost
-            email
-Verifikovati da polje za unos lozinke za atribut type ima vrednost
-            password
-Verifikovati da polje za unos lozinke za potvrdu za atribut type ima
-    vrednost password*/
+//    Test #2: Checks input types
+//    Assert:
+//    Verify that the email input field for the type attribute has the value 'email'
+//    Verify that the password input field for the type attribute has the value 'password'
+//    Verify that the confirmation password input field for the type attribute has the value 'password'
 
     @Test
     public void checkInputTypes(){
@@ -53,20 +48,18 @@ assert:
         // Verify that 'Confirm Password' field has attribute type value 'password'
         String actualConfirmPasswordTypeResult = signupPage.getConfirmPasswordField().getAttribute("type");
         Assert.assertEquals(actualConfirmPasswordTypeResult, expectedConfirmPasswordTypeResult);
+
     }
 
-    /*
-    Test #3: Displays errors when user already exists
-Podaci:
-name: Test Test
-email: admin@admin.com
-password: 123654
-confirm password: 123654
-assert:
-Verifikovati da greska sadrzi poruku E-mail already exists
-Verifikovati da se u url-u stranice javlja /signup ruta
-
-     */
+//     Test #3: Displays errors when user already exists
+//     Data:
+//     name: Test Test
+//     email: admin@admin.com
+//     password: 123654
+//     confirm password: 123654
+//     Assert:
+//     Verify that error notification message has text 'E-mail already exists'
+//     Verify that the route '/signup' appears in the url of the page
 
     @Test
     public void displayErrorsWhenUserAlreadyExists() {
@@ -80,22 +73,22 @@ assert:
         signupPage.signUpAlreadyExistUserMethod();
 
         // Verify that error notification has text 'E-mail already exists'
-        String actualResult = signupPage.getErrorNotification().findElement(signupPage.getEmailAlreadyExistNotification()).getText();
-        Assert.assertEquals(actualResult, expectedResult);
+        driverWait.until(ExpectedConditions.visibilityOf(signupPage.getErrorNotification()));
+        String actualResult = signupPage.getErrorNotification().getText();
+        Assert.assertTrue(actualResult.contains(expectedResult));
 
         // Verify that url contains '/signup'
         Assert.assertTrue(signupPage.getDriver().getCurrentUrl().contains("/signup"));
     }
 
-   /* Test #4: Signup
-    Podaci:
-            name: Ime i prezime polaznika
-email template: ime.prezime@itbootcamp.rs
-password: 12346
-            confirm password: 123456
-            assert:
-            Verifikovati da dijalog za obavestenje sadrzi tekst IMPORTANT:
-    Verify your account*/
+//     Test #4: Signup
+//     Data:
+//     name: name and surname of the attendee
+//     email template: name.surname@itbootcamp.rs
+//     password: 123456
+//     confirm password: 123456
+//     Assert:
+//     Verify that the notification dialog contains text 'IMPORTANT: Verify your account'
 
     @Test
     public void signupTest(){

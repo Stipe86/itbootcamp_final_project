@@ -6,11 +6,10 @@ import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest {
 
-/*
-Test #1: Visits the login page
-assert:
-Verifikovati da se u url-u stranice javlja ruta /login
- */
+
+//    Test #1: Visits the login page
+//    Assert:
+//    Verify that the route '/login' appears in the url of the page
 
     @Test
     public void visitsTheLoginPageTest() {
@@ -24,14 +23,11 @@ assert:
         Assert.assertEquals(actualResult, expectedResult);
     }
 
-    /*
-    Test #2: Checks input types
-assert:
-Verifikovati da polje za unos emaila za atribut type ima vrednost
-email
-Verifikovati da polje za unos lozinke za atribut type ima vrednost
-password
-     */
+
+//    Test #2: Checks input types
+//    Assert:
+//    Verify that the email input field for the type attribute has the value 'email'
+//    Verify that the password input field for the type attribute has the value 'password'
 
     @Test
     public void checkInputTypesTest(){
@@ -51,13 +47,13 @@ password
 
     }
 
-    /*
-    Test #3: Displays errors when user does not exist
-Podaci: random email i password koristeći faker libarary
-asssert:
-Verifikovati da greska sadrzi poruku User does not exists
-Verifikovati da se u url-u stranice javlja /login ruta
-     */
+//    Test #3: Displays errors when user does not exist
+//    Data:
+//    random email and password using faker library
+//    Asssert:
+//    Verify that error notification contains message 'User does not exists'
+//    Verify that the route '/login' appears in the url of the page
+
 
     @Test
     public void displayingErrorsWhenUserDoesNotExistTest(){
@@ -71,7 +67,7 @@ asssert:
         driverWait.until(ExpectedConditions.visibilityOf(loginPage.getErrorNotification()));
 
         // Verify that error notification has text 'User does not exists'
-        String actualResult = loginPage.getErrorNotification().findElement(loginPage.getEmailErrorNotification()).getText();
+        String actualResult = loginPage.getErrorNotification().getText();
         Assert.assertEquals(actualResult, expectedResult);
 
         // Verify that url contains '/login'
@@ -79,15 +75,13 @@ asssert:
 
     }
 
-/*
-Test #4: Displays errors when password is wrong
-Podaci: email: admin@admin.com i proizvoljan password
-asssert:
-Verifikovati da greska sadrzi poruku Wrong password
-Verifikovati da se u url-u stranice javlja /login ruta
+//      Test #4: Displays errors when password is wrong
+//      Data:
+//      email: admin@admin.com and random password
+//      Asssert:
+//      Verify that error notification message has text 'Wrong password'
+//      Verify that the route '/login' appears in the url of the page
 
-
- */
     @Test
     public void displayingErrorsWhenPasswordIsWrongTest(){
         String expectedResult = "Wrong password";
@@ -100,7 +94,7 @@ asssert:
         driverWait.until(ExpectedConditions.visibilityOf(loginPage.getErrorNotification()));
 
         // Verify that error notification has text 'Wrong password'
-        String actualResult = loginPage.getErrorNotification().findElement(loginPage.getPasswordErrorNotification()).getText();
+        String actualResult = loginPage.getErrorNotification().getText();
         Assert.assertEquals(actualResult, expectedResult);
 
         // Verify that url contains '/login'
@@ -108,14 +102,12 @@ asssert:
 
     }
 
-    /*
-    Test #5: Login
-Podaci:
-email: admin@admin.com
-password: 12345
-asssert:
-Verifikovati da se u url-u stranice javlja /home ruta
-     */
+//     Test #5: Login
+//     Data:
+//     email: admin@admin.com
+//     password: 12345
+//     Asssert:
+//     Verify that the route '/home' appears in the url of the page
 
 
     @Test
@@ -134,16 +126,12 @@ asssert:
         Assert.assertEquals(actualResult, expectedResult);
 
     }
-/*
 
-    Test #6: Logout
-assert:
-        Verifikovati da je dugme logout vidljivo na stranici
-Verifikovati da se u url-u stranice javlja /login ruta
-Verifikovati da se nakon pokušaja otvaranja /home rute, u url-u
-    stranice javlja /login ruta
-
-*/
+//    Test #6: Logout
+//    Assert:
+//    Verify that logout button is visible on the page
+//    Verify that the route '/login' appears in the url of the page
+//    Verify that after trying to open the '/home' route, the '/login' route appears in the url of the page
 
     @Test
     public void logoutTest(){
@@ -173,7 +161,7 @@ assert:
         driverWait.until(ExpectedConditions.urlContains("/login"));
 
 
-        // Verify that after attempt to load home page url contains '/login'
+        // Verify that, after attempt to load the home page, url contains '/login'
         Assert.assertTrue(driver.getCurrentUrl().contains("/login"));
     }
 

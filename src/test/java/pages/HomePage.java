@@ -13,9 +13,8 @@ public class HomePage extends BasePage {
         super(driver, driverWait);
     }
 
-//    private By logoutBtn = By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button[2]");
     private By logoutBtn = By.xpath("//button[contains(@class, 'btnLogout')]");
-    // //i[contains(@class, 'mdi-exit-to-app' )]/ancestor::button
+
     private By adminButton = By.xpath("//i[contains(@class, 'mdi-lock')]/ancestor::button");
 
     private By citiesButton = By.xpath("//a[@href='/admin/cities']");
@@ -36,6 +35,7 @@ public class HomePage extends BasePage {
     }
 
     public WebElement getAdminButton() {
+
         return getDriver().findElement(adminButton);
     }
 

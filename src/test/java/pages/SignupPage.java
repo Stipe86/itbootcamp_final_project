@@ -20,29 +20,16 @@ public class SignupPage extends BasePage {
 
     private By confirmPasswordField = By.id("confirmPassword");
 
-    private By signMeUpButton = By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[2]/span/form/div/div[5]/button");
+    private By signMeUpButton = By.xpath("//button/span[text()='Sign me up']");
 
-
-    private By errorNotification = By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[3]/div/div/div/div/div[1]");
-
-    private By emailAlreadyExistNotification = By.xpath("//li[contains(text(),'E-mail already exists')]");
-
-//    private By signupDialog = By.xpath("//*[@id=\"app\"]/div[4]/div/div/div[1]");
+    private By errorNotification = By.xpath("//div[@role= 'status']//li");
 
     private By signupDialog = By.xpath("//div[contains(@class, 'dlgVerifyAccount')]");
 
-//    private By closeDialogButton = By.xpath("//*[@id=\"app\"]/div[4]/div/div/div[3]/button");
     private By closeDialogButton = By.xpath("//button[contains(@class, 'btnClose')]");
-//    private By closeDialogButton = By.xpath("//button[text()='Close']");
 
-//    private By logoutButton = By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button[1]");
     private By logoutButton = By.xpath("//button[contains(@class, 'btnLogout')]");
-//    private By logoutButton = By.xpath("//i[contains(@class, 'mdi-exit-to-app' )]/ancestor::button");
 
-//    private  List<WebElement> listCloseDialogButton = getDriver().findElements(closeDialogButton);
-//
-//    private List<WebElement> listLogoutButton = getDriver().findElements(logoutButton);
-//i[contains(@class, 'mdi-exit-to-app' )]/ancestor::button
 
     public WebElement getNameField() {
         return getDriver().findElement(nameField);
@@ -66,10 +53,6 @@ public class SignupPage extends BasePage {
 
     public WebElement getErrorNotification() {
         return getDriver().findElement(errorNotification);
-    }
-
-    public By getEmailAlreadyExistNotification() {
-        return emailAlreadyExistNotification;
     }
 
     public WebElement getSignupDialog() {
@@ -128,17 +111,6 @@ public class SignupPage extends BasePage {
         getSignMeUpButton().click();
     }
 
-//    public void checkVisibilityOfDialog() {
-//        if (listCloseDialogButton.size() !=0);{
-//            getCloseDialogButton().click();
-//        }
-//    }
-//
-//    public void checkVisibilityOfLogoutButton() {
-//        if (listLogoutButton.size() !=0) {
-//            getLogoutButton().click();
-//        }
-//    }
 
     public List<WebElement> getListCloseDialogButton() {
         return getDriver().findElements(closeDialogButton);
@@ -146,6 +118,12 @@ public class SignupPage extends BasePage {
 
     public List<WebElement> getListLogoutButton() {
         return getDriver().findElements(logoutButton);
+    }
+
+    public void clickCloseDialogButton() {
+        if (getListCloseDialogButton().size() !=0 ) {
+            getCloseDialogButton().click();
+        }
     }
 
     public void clickOnLogoutBtn() {

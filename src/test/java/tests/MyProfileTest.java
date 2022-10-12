@@ -9,13 +9,13 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class MyProfileTest extends BaseTest{
-   /* Profile Tests
-    Test #1: Edits profile
-    Podaci: random podaci korišćenjem faker library-ja
-assert:
-        Verifikovati da je prikazana poruka Profile saved successfuly
-Verifikovati da svaki input sada za value atribut ima vrednost koja
-    je uneta u okviru forme*/
+
+//    Test #1: Edits profile
+//    Data:
+//    random data using faker library
+//    Assert:
+//    Verify that displayed message is 'Profile saved successfuly'
+//    Verify that each input now for the value attribute has the value entered within the form
 
     @BeforeClass
     public void setUp() {
@@ -61,7 +61,7 @@ assert:
         myProfilePage.getPhoneField().click();
         myProfilePage.getPhoneField().sendKeys(phone);
 
-        // selecect the city from the dropdown
+        // select the city from the dropdown
         myProfilePage.chooseCity(Cities.BUCARAMANGA);
 
 
@@ -77,17 +77,17 @@ assert:
         myProfilePage.getGitHubField().click();
         myProfilePage.getGitHubField().sendKeys(newGitHub);
 
-
-
+        // click on 'SAVE' button
         myProfilePage.getSaveBtn().click();
-
         driverWait.until(ExpectedConditions.visibilityOf(myProfilePage.getConfimationMessage()));
 
-        String actualResult = myProfilePage.getConfimationMessage().getText().trim();
 
         // verify that confirmation message is displayed with text : 'Profile saved successfuly'
+        String actualResult = myProfilePage.getConfimationMessage().getText().trim();
         Assert.assertTrue(actualResult.contains(expectedResult));
 
+
+        // verify that new data is displayed after changes are saved
         String actualNameResult = myProfilePage.getNameField().getAttribute("value");
         String actualPhoneResult = myProfilePage.getPhoneField().getAttribute("value");
         String actualCityResult = myProfilePage.getCityField().getAttribute("value");
@@ -95,8 +95,6 @@ assert:
         String actualTwitterResult = myProfilePage.getTwitterField().getAttribute("value");
         String actualGitHubResult = myProfilePage.getGitHubField().getAttribute("value");
 
-
-        // verify that new data is displayed after changes are saved
         Assert.assertEquals(actualNameResult, newName);
         Assert.assertEquals(actualPhoneResult, phone);
         Assert.assertEquals(actualCityResult, Cities.BUCARAMANGA.toString());

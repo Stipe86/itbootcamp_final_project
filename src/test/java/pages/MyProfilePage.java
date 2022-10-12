@@ -28,7 +28,6 @@ public class MyProfilePage extends BasePage{
     public By gitHubField = By.id("urlGitHub");
 
     private By confirmationMessage = By.xpath("//div[contains(@class,'success')]");
-//    private By confirmationMessage = By.xpath("//div[@role='status'][text()=' Saved successfully ']");
 
     private By btnSave = By.xpath("//button[contains(@class,'btnSave')]");
 

@@ -5,30 +5,11 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class AuthRoutesTest extends BaseTest {
-    /*
-    Auth Routes Tests
-Test #1: Forbids visits to home url if not authenticated
-assert:
-Ucitati /home stranu kada korisnik nije ulogovan
-Verifikovati da se u url-u stranice javlja ruta /login
-Test #2: Forbids visits to profile url if not authenticated
-assert:
-Ucitati /profile stranu
-Verifikovati da se u url-u stranice javlja ruta /login
-Test #3: Forbids visits to admin cities url if not authenticated
-assert:
-Ucitati /admin/cities stranu
-Verifikovati da se u url-u stranice javlja ruta /login
-Test #4: Forbids visits to admin users url if not authenticated
-assert:
-Ucitati /admin/users stranu
-Verifikovati da se u url-u stranice javlja ruta /login
-     */
-//    Auth Routes Tests
+
 //    Test #1: Forbids visits to home url if not authenticated
-//assert:
-//        Ucitati /home stranu kada korisnik nije ulogovan
-//Verifikovati da se u url-u stranice javlja ruta /login
+//    Assert:
+//    Load '/home' page when user not logged in
+//    Verify that the route '/login' appears in the url of the page
 
     @Test
     public void forbidsVisitsToHomeUrlIfNotAuthenticatedTest(){
@@ -36,17 +17,15 @@ assert:
         driver.get("https://vue-demo.daniel-avellaneda.com/home");
         driverWait.until(ExpectedConditions.urlContains("/login"));
 
-        // Verify that after attempt to load 'home' page url contains '/login'
+        // Verify redirection to '/login'
         Assert.assertTrue(driver.getCurrentUrl().contains("/login"));
     }
 
+//   Test #2: Forbids visits to profile url if not authenticated
+//   Assert:
+//   Load '/profile' page when user not logged in
+//   Verify that the route '/login' appears in the url of the page
 
-   /*
-   Test #2: Forbids visits to profile url if not authenticated
-assert:
-        Ucitati /profile stranu
-Verifikovati da se u url-u stranice javlja ruta /login
-*/
 
     @Test
     public void forbidsVisitsToProfileUrlIfNotAuthenticatedTest(){
@@ -55,17 +34,14 @@ assert:
         driver.get("https://vue-demo.daniel-avellaneda.com/profile");
         driverWait.until(ExpectedConditions.urlContains("/login"));
 
-        // Verify that after attempt to load 'profile' page url contains '/login'
+        // Verify redirection to '/login'
         Assert.assertTrue(driver.getCurrentUrl().contains("/login"));
     }
 
-   /*
-   Test #3: Forbids visits to admin cities url if not authenticated
-assert:
-        Ucitati /admin/cities stranu
-Verifikovati da se u url-u stranice javlja ruta /login
-*/
-
+//   Test #3: Forbids visits to admin cities url if not authenticated
+//   Assert:
+//   Load '/admin/cities' page
+//   Verify that the route '/login' appears in the url of the page
 
     @Test
     public void forbidsVisitsToAdminCitiesUrlIfNotAuthenticatedTest(){
@@ -74,17 +50,16 @@ assert:
         driver.get("https://vue-demo.daniel-avellaneda.com/admin/cities");
         driverWait.until(ExpectedConditions.urlContains("/login"));
 
-        // Verify that after attempt to load 'admin cities' page url contains '/login'
+        // Verify redirection to '/login'
         Assert.assertTrue(driver.getCurrentUrl().contains("/login"));
     }
 
 
 
-   /* Test #4: Forbids visits to admin users url if not authenticated
-assert:
-        Ucitati /admin/users stranu
-Verifikovati da se u url-u stranice javlja ruta /login
-     */
+//   Test #4: Forbids visits to admin users url if not authenticated
+//   Assert:
+//   Load '/admin/users' page
+//   Verify that the route '/login' appears in the url of the page
 
     @Test
     public void forbidsVisitsToAdminUsersUrlIfNotAuthenticatedTest(){
@@ -93,7 +68,7 @@ assert:
         driver.get("https://vue-demo.daniel-avellaneda.com/admin/users");
         driverWait.until(ExpectedConditions.urlContains("/login"));
 
-        // Verify that after attempt to load 'admin users' page url contains '/login'
+        // Verify redirection to '/login'
         Assert.assertTrue(driver.getCurrentUrl().contains("/login"));
     }
 
