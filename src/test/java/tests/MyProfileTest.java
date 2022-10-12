@@ -5,7 +5,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class MyProfileTest extends BaseTest{
@@ -64,7 +63,6 @@ public class MyProfileTest extends BaseTest{
         // select the city from the dropdown
         myProfilePage.chooseCity(Cities.BUCARAMANGA);
 
-
         // focus 'Country' field and input country name
         myProfilePage.getCountryField().click();
         myProfilePage.getCountryField().sendKeys(newCountry);
@@ -81,11 +79,9 @@ public class MyProfileTest extends BaseTest{
         myProfilePage.getSaveBtn().click();
         driverWait.until(ExpectedConditions.visibilityOf(myProfilePage.getConfimationMessage()));
 
-
         // verify that confirmation message is displayed with text : 'Profile saved successfuly'
         String actualResult = myProfilePage.getConfimationMessage().getText().trim();
         Assert.assertTrue(actualResult.contains(expectedResult));
-
 
         // verify that new data is displayed after changes are saved
         String actualNameResult = myProfilePage.getNameField().getAttribute("value");

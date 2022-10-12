@@ -16,7 +16,7 @@ public class SignupTest extends BaseTest{
         commonPage.getSignUpPageButton().click();
         driverWait.until(ExpectedConditions.visibilityOf(signupPage.getEmailField()));
 
-        // Verify that url cointains '/signup'
+        // Verify that url contains '/signup'
         Assert.assertTrue(signupPage.getDriver().getCurrentUrl().contains("/signup"));
 
     }
@@ -48,7 +48,6 @@ public class SignupTest extends BaseTest{
         // Verify that 'Confirm Password' field has attribute type value 'password'
         String actualConfirmPasswordTypeResult = signupPage.getConfirmPasswordField().getAttribute("type");
         Assert.assertEquals(actualConfirmPasswordTypeResult, expectedConfirmPasswordTypeResult);
-
     }
 
 //     Test #3: Displays errors when user already exists
@@ -89,6 +88,7 @@ public class SignupTest extends BaseTest{
 //     confirm password: 123456
 //     Assert:
 //     Verify that the notification dialog contains text 'IMPORTANT: Verify your account'
+//     Note: This test can be run only once in every half hour, since database is refreshing in that interval
 
     @Test
     public void signupTest(){
@@ -104,8 +104,6 @@ public class SignupTest extends BaseTest{
         // Verify that sign up dialog has text 'IMPORTANT: Verify your account'
         String actualResult = signupPage.getSignupDialog().getText().trim();
         Assert.assertEquals(actualResult, expectedResult);
-
-
     }
 
 }

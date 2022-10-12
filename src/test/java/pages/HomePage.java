@@ -25,17 +25,11 @@ public class HomePage extends BasePage {
 
     private By header = By.cssSelector("h1");
 
-
     public WebElement getLogoutBtn() {
         return getDriver().findElement(logoutBtn);
     }
 
-    public List<WebElement> getListLogoutBtn() {
-        return getDriver().findElements(logoutBtn);
-    }
-
     public WebElement getAdminButton() {
-
         return getDriver().findElement(adminButton);
     }
 

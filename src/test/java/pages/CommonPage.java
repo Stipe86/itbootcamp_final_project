@@ -26,7 +26,6 @@ public class CommonPage extends BasePage {
 
     private By fraButton = By.xpath("//span[contains(@class,  'f-fr')]");
 
-
     public WebElement getHomePageButton() {
         return getDriver().findElement(homePageButton);
     }
@@ -58,8 +57,6 @@ public class CommonPage extends BasePage {
     public WebElement getFraButton() {
         return getDriver().findElement(fraButton);
     }
-
-
 }
 
 

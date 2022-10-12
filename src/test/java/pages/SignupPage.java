@@ -30,7 +30,6 @@ public class SignupPage extends BasePage {
 
     private By logoutButton = By.xpath("//button[contains(@class, 'btnLogout')]");
 
-
     public WebElement getNameField() {
         return getDriver().findElement(nameField);
     }
@@ -68,10 +67,10 @@ public class SignupPage extends BasePage {
     }
 
     public void signUpAlreadyExistUserMethod () {
-     String   name = "Test Test";
-      String  email = "admin@admin.com";
-       String password = "123654";
-       String confirmPassword = "123654";
+        String   name = "Test Test";
+        String  email = "admin@admin.com";
+        String password = "123654";
+        String confirmPassword = "123654";
         getNameField().clear();
         getEmailField().clear();
         getPasswordField().clear();
@@ -87,7 +86,7 @@ public class SignupPage extends BasePage {
         String   name = "Stjepan Miljkovic";
         String  email = "stjepan.miljkovic@itbootcamp.rs";
         String password = "123456";
-        String confirmpassword = "123456";
+        String confirmPassword = "123456";
         getNameField().clear();
         getEmailField().clear();
         getPasswordField().clear();
@@ -95,7 +94,7 @@ public class SignupPage extends BasePage {
         getNameField().sendKeys(name);
         getEmailField().sendKeys(email);
         getPasswordField().sendKeys(password);
-        getConfirmPasswordField().sendKeys(confirmpassword);
+        getConfirmPasswordField().sendKeys(confirmPassword);
         getSignMeUpButton().click();
     }
 
@@ -110,7 +109,6 @@ public class SignupPage extends BasePage {
         getConfirmPasswordField().sendKeys(password);
         getSignMeUpButton().click();
     }
-
 
     public List<WebElement> getListCloseDialogButton() {
         return getDriver().findElements(closeDialogButton);

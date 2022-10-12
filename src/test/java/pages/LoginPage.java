@@ -18,7 +18,6 @@ public class LoginPage extends BasePage {
 
     private By errorNotification = By.xpath("//div[@role= 'status']//li");
 
-
     public WebElement getEmailField() {
         return getDriver().findElement(emailField);
     }
@@ -27,7 +26,7 @@ public class LoginPage extends BasePage {
         return getDriver().findElement(passwordField);
     }
 
-    public WebElement getloginButton() {
+    public WebElement getLoginButton() {
         return getDriver().findElement(loginButton);
     }
 
@@ -41,7 +40,7 @@ public class LoginPage extends BasePage {
         getPasswordField().clear();
         getEmailField().sendKeys(email);
         getPasswordField().sendKeys(password);
-        getloginButton().click();
+        getLoginButton().click();
 
     }
 

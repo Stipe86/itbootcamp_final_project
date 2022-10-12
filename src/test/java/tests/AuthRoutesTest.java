@@ -10,7 +10,6 @@ public class AuthRoutesTest extends BaseTest {
 //    Assert:
 //    Load '/home' page when user not logged in
 //    Verify that the route '/login' appears in the url of the page
-
     @Test
     public void forbidsVisitsToHomeUrlIfNotAuthenticatedTest(){
         // Load page with url : 'https://vue-demo.daniel-avellaneda.com/home'
@@ -25,8 +24,6 @@ public class AuthRoutesTest extends BaseTest {
 //   Assert:
 //   Load '/profile' page when user not logged in
 //   Verify that the route '/login' appears in the url of the page
-
-
     @Test
     public void forbidsVisitsToProfileUrlIfNotAuthenticatedTest(){
 
@@ -42,7 +39,6 @@ public class AuthRoutesTest extends BaseTest {
 //   Assert:
 //   Load '/admin/cities' page
 //   Verify that the route '/login' appears in the url of the page
-
     @Test
     public void forbidsVisitsToAdminCitiesUrlIfNotAuthenticatedTest(){
 
@@ -54,13 +50,10 @@ public class AuthRoutesTest extends BaseTest {
         Assert.assertTrue(driver.getCurrentUrl().contains("/login"));
     }
 
-
-
 //   Test #4: Forbids visits to admin users url if not authenticated
 //   Assert:
 //   Load '/admin/users' page
 //   Verify that the route '/login' appears in the url of the page
-
     @Test
     public void forbidsVisitsToAdminUsersUrlIfNotAuthenticatedTest(){
 

@@ -1,13 +1,9 @@
 package tests;
 
 import com.github.javafaker.Faker;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -52,7 +48,6 @@ public abstract class BaseTest {
         driverWait = new WebDriverWait(driver, Duration.ofSeconds(6));
     }
 
-
     public void sleep(int miliseconds) {
         try {
             Thread.sleep(miliseconds);
@@ -75,7 +70,6 @@ public abstract class BaseTest {
         signupPage.clickOnLogoutBtn();
     }
 
-
     @AfterClass
     public void afterClass() {
         sleep(5000);
@@ -85,6 +79,7 @@ public abstract class BaseTest {
     public String adminEmail (){
         return "admin@admin.com";
     }
+
     public String adminPassword () {
         return "12345";
     }
@@ -99,11 +94,8 @@ public abstract class BaseTest {
         return String.valueOf(pass);
     }
 
-
     public String randomCity() {
         String fakerCity = faker.address().city();
         return fakerCity;
     }
-
-
 }

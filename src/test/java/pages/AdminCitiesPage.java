@@ -73,7 +73,6 @@ public class AdminCitiesPage extends BasePage{
         return getDriver().findElement(editButton);
     }
 
-
     public String getCityName() {
         return cityName;
     }

@@ -1,6 +1,5 @@
 package tests;
 
-import helper.Cities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -11,7 +10,6 @@ public class LocaleTest extends BaseTest {
 //   Assert:
 //   Set language to 'ES'
 //   Verify that page header has text 'Página de aterrizaje'
-
     @Test
     public void setLocaleToESTest() {
         String expectedResult = "Página de aterrizaje";
@@ -33,7 +31,6 @@ public class LocaleTest extends BaseTest {
 //   Assert:
 //   Set language to 'EN'
 //   Verify that page header has text 'Landing'
-
     @Test
     public void setLocaleToENTest() {
         String expectedResult = "Landing";
@@ -55,7 +52,6 @@ public class LocaleTest extends BaseTest {
 //   Assert:
 //   Set language to 'FR'
 //   Verify that page header has text 'Page d'atterrissage'
-
     @Test
     public void setLocaleToFRTest() {
         String expectedResult = "Page d'atterrissage";
@@ -72,7 +68,4 @@ public class LocaleTest extends BaseTest {
         String actualResult = homePage.getHeader().getText();
         Assert.assertEquals(actualResult, expectedResult);
     }
-
-
-
 }

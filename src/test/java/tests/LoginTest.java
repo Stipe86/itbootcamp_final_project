@@ -10,29 +10,29 @@ public class LoginTest extends BaseTest {
 //    Test #1: Visits the login page
 //    Assert:
 //    Verify that the route '/login' appears in the url of the page
-
     @Test
     public void visitsTheLoginPageTest() {
         String expectedResult = "https://vue-demo.daniel-avellaneda.com/login";
         // Navigate to 'Login' page
         commonPage.getLoginPageButton().click();
+
         // Get url of opened page
         driverWait.until(ExpectedConditions.urlContains("/login"));
         String actualResult = driver.getCurrentUrl();
+
         // Verify that url contains '/login'
         Assert.assertEquals(actualResult, expectedResult);
     }
-
 
 //    Test #2: Checks input types
 //    Assert:
 //    Verify that the email input field for the type attribute has the value 'email'
 //    Verify that the password input field for the type attribute has the value 'password'
-
     @Test
     public void checkInputTypesTest(){
         String expectedEmailTypeResult = "email";
         String expectedPasswordTypeResult = "password";
+
         // Navigate to 'Login' page
         commonPage.getLoginPageButton().click();
         driverWait.until(ExpectedConditions.visibilityOf(loginPage.getEmailField()));
@@ -53,8 +53,6 @@ public class LoginTest extends BaseTest {
 //    Asssert:
 //    Verify that error notification contains message 'User does not exists'
 //    Verify that the route '/login' appears in the url of the page
-
-
     @Test
     public void displayingErrorsWhenUserDoesNotExistTest(){
         String expectedResult = "User does not exists";
@@ -81,7 +79,6 @@ public class LoginTest extends BaseTest {
 //      Asssert:
 //      Verify that error notification message has text 'Wrong password'
 //      Verify that the route '/login' appears in the url of the page
-
     @Test
     public void displayingErrorsWhenPasswordIsWrongTest(){
         String expectedResult = "Wrong password";

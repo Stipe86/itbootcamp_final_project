@@ -9,11 +9,9 @@ public class AdminCitiesTest extends BaseTest {
 
     @BeforeClass
     public void setUp() {
-        // Seting the city name that will be used in tests
+        // Setting the city name that will be used in tests
         adminCitiesPage.setCityName(randomCity());
     }
-
-
 
 //    Test #1: Visits the admin cities page and list cities
 //    Data:
@@ -22,9 +20,6 @@ public class AdminCitiesTest extends BaseTest {
 //    Assert:
 //    Verify that url contains '/admin/cities'
 //    Verify that 'Logout' button is displayed
-
-
-
     @Test(priority = 1)
     public void visitsTheAdminCitiesPageAndListCitiesTest(){
         // Navigate to 'Login page'
@@ -38,7 +33,6 @@ public class AdminCitiesTest extends BaseTest {
         // Navigate to 'Cities' page
         homePage.getAdminButton().click();
         driverWait.until(ExpectedConditions.visibilityOf(homePage.getCitiesButton()));
-
         homePage.getCitiesButton().click();
         driverWait.until(ExpectedConditions.visibilityOf(adminCitiesPage.getLogoutButton()));
 
@@ -55,7 +49,6 @@ public class AdminCitiesTest extends BaseTest {
 //    random city using faker library
 //    Assert:
 //    Verify message contains text 'Saved successfully'
-
     @Test(priority = 2)
     public void createNewCityTest() {
         String expectedResult = "Saved successfully";
@@ -74,7 +67,7 @@ public class AdminCitiesTest extends BaseTest {
         homePage.getCitiesButton().click();
         driverWait.until(ExpectedConditions.urlContains("/admin/cities"));
 
-        // Create city using the name that was setup in the 'BeforeClass'
+        // Create city using the name that was set up in the 'BeforeClass'
         String city = adminCitiesPage.getCityName();
         adminCitiesPage.makeNewCityNameMethod(city);
         driverWait.until(ExpectedConditions.visibilityOf(adminCitiesPage.getConfimationMessage()));
@@ -91,7 +84,6 @@ public class AdminCitiesTest extends BaseTest {
 //    (example: New York - New York edited)
 //    Assert:
 //    Verify that message contains text 'Saved successfully'
-
     @Test(priority = 3)
     public void editCityTest() {
         String expectedResult = "Saved successfully";
@@ -126,14 +118,11 @@ public class AdminCitiesTest extends BaseTest {
 
     }
 
-
 //    Test #4: Search city
 //    Data:
 //    edited city from test #3
 //    Assert:
 //    Verify that text in the first row of the table matches the input in 'Search' field
-
-
     @Test(priority = 4)
     public void searchCityTest() {
         // Navigate to 'Login page'
@@ -157,9 +146,7 @@ public class AdminCitiesTest extends BaseTest {
         String expectedResult = city;
         String actualResult = adminCitiesPage.getTableCityRow1().getText();
         Assert.assertEquals(actualResult, expectedResult);
-
     }
-
 
 //    Test #5: Delete city
 //    Data:
@@ -173,7 +160,6 @@ public class AdminCitiesTest extends BaseTest {
 //    Click on delete button in dialog
 //    Wait for delete confirmation message to be visible
 //    Verify that confirmation message contains text 'Deleted successfully'
-
     @Test(priority = 5)
     public void deleteCityTest(){
         // Navigate to 'Login page'
@@ -206,10 +192,5 @@ public class AdminCitiesTest extends BaseTest {
         String expectedResult2 = "Deleted successfully";
         String actualResult2 = adminCitiesPage.getDeleteConfirmationMessage().getText().trim();
         Assert.assertTrue(actualResult2.contains(expectedResult2));
-
     }
-
-
-
-
 }

@@ -31,10 +31,6 @@ public class MyProfilePage extends BasePage{
 
     private By btnSave = By.xpath("//button[contains(@class,'btnSave')]");
 
-
-
-
-
     public WebElement getSaveBtn() {
         return getDriver().findElement(btnSave);
     }
@@ -51,7 +47,6 @@ public class MyProfilePage extends BasePage{
         return getDriver().findElement(cityField);
     }
 
-
     public WebElement getCountryField() {
         return getDriver().findElement(countryField);
     }
@@ -67,8 +62,7 @@ public class MyProfilePage extends BasePage{
     public WebElement getConfimationMessage() {
         return getDriver().findElement(confirmationMessage);
     }
-
-
+    
     private List<WebElement> citiesList(){
         return getDriver().findElements(cities);
     }
